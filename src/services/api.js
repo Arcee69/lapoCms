@@ -22,6 +22,10 @@ const apiResource = () => {
             config.headers["Authorization"] = `Bearer ${token}`;
             if (config?.url === appUrls?.CREATE_POST_URL) {
                 config.headers["Content-Type"] = "multipart/form-data";
+            } else if (config?.url === appUrls?.UPDATE_POST_URL) {
+                config.headers["Content-Type"] = "multipart/form-data";
+            } else if (config?.url === appUrls?.GALLERY_URL) {
+                config.headers["Content-Type"] = "multipart/form-data";
             } else {
                 config.headers["Content-Type"] = 'application/json';
             }

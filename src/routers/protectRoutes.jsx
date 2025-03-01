@@ -12,7 +12,7 @@ export const ProtectRoutes = () => {
         <Outlet />
       </BoardLayout>
     ) : (
-      <Navigate to="/login" state={{ from: location }} replace />
+      <Navigate to="/" state={{ from: location }} replace />
     );
   };
 
@@ -24,6 +24,6 @@ export const ProtectRoutes = () => {
         <Outlet />
       </AuthLayout>
     ) : (
-      <Navigate to="/dashboard" state={{ from: location }} replace />
+      <Navigate to="/view-blog" state={{ from: location }} replace />
     );
   };

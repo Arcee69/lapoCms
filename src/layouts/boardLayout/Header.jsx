@@ -42,18 +42,11 @@ export default function Header({ setOpenMobileSidebar }) {
     
       </div>
       <div className="flex gap-4 items-center mr-4 ">
-  
-        <img
-          src={avatar}
-          alt="avatar"
-          loading="lazy"
-          className="h-[40px] w-[40px] cursor-pointer"
-          // id="header-menu"
-          // aria-controls={open ? "header-menu" : undefined}
-          // aria-haspopup="true"
-          // aria-expanded={open ? "true" : undefined}
-          // onClick={handleClick}
-        />
+
+        <div className="h-[40px] w-[40px] bg-[#E78020] cursor-pointer rounded-full flex items-center justify-center p-2">
+          <p className="text-[18px] font-medium ">A</p>
+        </div>        
+
         <div 
           className="flex flex-col cursor-pointer"
           id="header-menu"
@@ -73,7 +66,8 @@ export default function Header({ setOpenMobileSidebar }) {
         >
           <MenuItem
             onClick={() => {
-              TokenService.removeUser()
+              localStorage.removeItem("userObj")
+              localStorage.removeItem("token")
               navigate("/")
             }}
           >

@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 const ViewBlog = () => {
-    const [blogs, setBlogs] = useState()
+    const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(false)
     const [prevPageUrl, setPrevPageUrl] = useState(null);
     const [nextPageUrl, setNextPageUrl] = useState(null);
@@ -25,39 +25,39 @@ const ViewBlog = () => {
     const navigate = useNavigate()
     
 
-    // const fetchBlogPosts = async (url = "https://api.admin.noa.gov.ng/api/post") => {
-    //     setLoading(true)
-    //     try {
-    //       const res = await axios.get(url);
-    //       console.log(res, "addict")
-    //       const data = res.data;
+    const fetchBlogPosts = async (url = "https://lapo.smhptech.com/api/v1/post") => {
+        setLoading(true)
+        try {
+          const res = await axios.get(url);
+          console.log(res, "addict")
+          const data = res.data;
     
-    //       setBlogs(data?.data || []);
-    //       setPrevPageUrl(data.pagination?.prev_page_url);
-    //       setNextPageUrl(data.pagination?.next_page_url);
-    //       setCurrentPage(data.pagination?.current_page);
-    //     } catch (err) {
-    //       console.error(err);
-    //     } finally {
-    //         setLoading(false)
-    //     }
-    //   };
+          setBlogs(data?.data || []);
+          setPrevPageUrl(data.pagination?.prev_page_url);
+          setNextPageUrl(data.pagination?.next_page_url);
+          setCurrentPage(data.pagination?.current_page);
+        } catch (err) {
+          console.error(err);
+        } finally {
+            setLoading(false)
+        }
+      };
     
-    //   useEffect(() => {
-    //     fetchBlogPosts();
-    //   }, []);
+      useEffect(() => {
+        fetchBlogPosts();
+      }, []);
     
-    //   const handlePrevPage = () => {
-    //     if (prevPageUrl) fetchBlogPosts(prevPageUrl);
-    //   };
+      const handlePrevPage = () => {
+        if (prevPageUrl) fetchBlogPosts(prevPageUrl);
+      };
     
-    //   const handleNextPage = () => {
-    //     if (nextPageUrl) fetchBlogPosts(nextPageUrl);
-    //   };
+      const handleNextPage = () => {
+        if (nextPageUrl) fetchBlogPosts(nextPageUrl);
+      };
 
   return (
     <div className='md:p-8 flex flex-col gap-4'>
-        <p className='text-black text-xl font-semibold'>News</p>
+        <p className='text-black text-xl font-semibold'>Blogs</p>
         {
             loading 
             ?
@@ -66,7 +66,7 @@ const ViewBlog = () => {
             <div className={`${blogs?.length > 0 ? "grid grid-cols-3 gap-8" :  "flex items-center justify-center"}`}>
                 {
                     blogs?.length > 0 ? blogs?.map((blog, index) => (
-                        <div key={index} className="rounded-tl-xl bg-white p-3 rounded-tr-xl xs:w-full md:max-w-[280px]">
+                        <div key={index} className="rounded-tl-xl bg-white p-3 rounded-tr-xl xs:w-full md:min-w-[280px]">
                             <img loading='lazy' src={blog?.image} alt="" className='rounded-tl-xl rounded-tr-xl xs:w-full  h-[290px] object-cover' />
                             <div className='flex flex-col'>
                                 <p className='font-bold text-lg'>{blog?.title}</p>
@@ -82,7 +82,7 @@ const ViewBlog = () => {
                                                 Delete
                                             </p>
                                             <Link 
-                                                to="/update-news"
+                                                to="/update-blog"
                                                 state={blog}
                                                 className='cursor-pointer hover:bg-[#F8F8F8] p-1'
                                                 // onClick={() => {navigate("/update-blog"), setUpdateBlogPost(blog)}}
@@ -96,7 +96,7 @@ const ViewBlog = () => {
                         </div>
                     ))
                     :
-                    <p className='text-2xl text-[#000] text-center font-semibold'>No News Available</p>
+                    <p className='text-2xl text-[#000] text-center font-semibold'>No Blogs Available</p>
                 }
 
             </div>
@@ -104,7 +104,7 @@ const ViewBlog = () => {
 
         <div className="flex justify-center items-center gap-4 mt-10">
             <button
-                // onClick={handlePrevPage}
+                onClick={handlePrevPage}
                 disabled={!prevPageUrl}
                 className={`px-4 py-2 bg-[#00AA55] text-white font-bold rounded ${
                 !prevPageUrl && "opacity-50 cursor-not-allowed"
@@ -114,7 +114,7 @@ const ViewBlog = () => {
             </button>
             <p className="text-[#222222] font-bold">Page {currentPage}</p>
             <button
-                // onClick={handleNextPage}
+                onClick={handleNextPage}
                 disabled={!nextPageUrl}
                 className={`px-4 py-2 bg-[#00AA55] text-white font-bold rounded ${
                 !nextPageUrl && "opacity-50 cursor-not-allowed"

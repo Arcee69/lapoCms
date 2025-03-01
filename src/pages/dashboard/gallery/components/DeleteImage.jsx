@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { CgSpinner } from 'react-icons/cg';
 
 import { api } from '../../../../services/api'
+import { appUrls } from '../../../../services/urls';
 
 const DeleteImage = ({ handleClose, imageId }) => {
     const [loading, setLoading] = useState(false)
@@ -11,7 +12,7 @@ const DeleteImage = ({ handleClose, imageId }) => {
 
     const submitForm = async () => {
         setLoading(true)
-        await api.delete(`/api/gallery/delete/${Id}`)
+        await api.delete(appUrls?.GALLERY_URL, + `/${Id}`)
         .then((res) => {
             setLoading(false)
             toast(`${res?.data?.message}`, { 

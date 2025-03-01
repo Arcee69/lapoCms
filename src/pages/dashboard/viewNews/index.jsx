@@ -12,7 +12,7 @@ import DeleteNews from './components/DeleteNews';
 
 
 const ViewNews = () => {
-    const [blogs, setBlogs] = useState()
+    const [blogs, setBlogs] = useState([])
     const [loading, setLoading] = useState(false)
     const [prevPageUrl, setPrevPageUrl] = useState(null);
     const [nextPageUrl, setNextPageUrl] = useState(null);

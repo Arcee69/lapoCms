@@ -18,6 +18,9 @@ import ViewNews from '../pages/dashboard/viewNews';
 import UpdateNews from '../pages/dashboard/viewNews/components/UpdateNews';
 import Banner from '../pages/dashboard/banner';
 import Careers from '../pages/dashboard/careers';
+import FaqCategory from '../pages/dashboard/faqCategory';
+import Faq from '../pages/dashboard/faq';
+import AddFaq from '../pages/dashboard/addFaq';
 
 //<ProtectRoutes /> 
 
@@ -28,23 +31,28 @@ export default function Routers () {
     <div>
         <Routes>
 
-            <Route element={<BoardLayout /> }>
+            <Route element={<ProtectRoutes /> }>
               <Route path="/create-news" element={<CreateNews />} />
               <Route path="/view-news" element={<ViewNews />} />
               <Route path="/update-news" element={<UpdateNews />} />
-              <Route path="/media" element={<Gallery />} />
+              <Route path="/gallery" element={<Gallery />} />
               <Route path="/newsletter" element={<Newsletter />} />
               <Route path="/create-blog" element={<CreateBlog />} />
+              <Route path="/update-blog" element={<UpdateBlog />} />
+              <Route path="/blog" element={<ViewBlog />} />
               <Route path="/view-blog" element={<ViewBlog />} />
               <Route path="/banner" element={<Banner />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/add-faq-category" element={<FaqCategory />} />
+              <Route path="/add-faq" element={<AddFaq />} />
+              <Route path="/faq" element={<Faq />} />
             </Route>
 
-            {/* <Route element={<AuthProtectRoutes />}> */}
+            <Route element={<AuthProtectRoutes />}>
                 <Route path='/' element={<Login />} />
                 <Route path='/reset-password' element={<PasswordReset />} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
-            {/* </Route> */}
+            </Route>
         </Routes>
     </div>
   )

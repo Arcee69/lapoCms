@@ -11,7 +11,7 @@ import axios from 'axios'
 
 
 const AddImage = ({ handleClose }) => {
-   const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [pic, setPic] = useState(null)
 
     const handleFileChange = (event) => {
@@ -25,45 +25,36 @@ const AddImage = ({ handleClose }) => {
 
     const submitForm = async (values, action) => {
         setLoading(true)
-    let formData = new FormData();
-    formData.append("title", values?.title);
-    formData.append("type", "image");
+        
+        let formData = new FormData();
+        formData.append("caption", values?.title);
+        formData.append("image", pic);
 
-    if (pic) {
-        formData.append("file", pic);
-    }
-
-
-    try {
-        const res = await axios.post(`https://api.admin.noa.gov.ng${appUrls?.GALLERY_URL}`, formData, {
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
-            }
-        });
-        console.log(res, "pop");
-        setLoading(false)
-        toast(`${res?.data?.message}`, { 
-            position: "top-right",
-            autoClose: 3500,
-            closeOnClick: true,
-        });
-        handleClose();
-        window.location.reload()
-    } catch (err) {
-        console.error(err, "err");
-        setLoading(false)
-        toast(`${err?.data?.message}`, { 
-            position: "top-right",
-            autoClose: 3500,
-            closeOnClick: true,
-        });
-    }
-};
+        try {
+            const res = await api.post(appUrls?.GALLERY_URL, formData)
+            console.log(res, "pop");
+            toast(`${res?.data?.message}`, { 
+                position: "top-right",
+                autoClose: 3500,
+                closeOnClick: true,
+            });
+            handleClose();
+            window.location.reload()
+        } catch (err) {
+            console.error(err, "err");
+            toast(`${err?.data?.message}`, { 
+                position: "top-right",
+                autoClose: 3500,
+                closeOnClick: true,
+            });
+        } finally {
+            setLoading(false)
+        }
+    };
 
 
   return (
-    <div className='w-[700px] h-[600px] overflow-y-scroll mt-[20px] rounded-lg bg-[#fff] flex flex-col pt-[100px] '>
+    <div className='w-[700px] h-[500px] overflow-y-auto  mt-[20px] rounded-lg bg-[#fff] flex flex-col  py-[40px] '>
         <div className='flex w-full'>
         <Formik
             initialValues={{
@@ -107,17 +98,18 @@ const AddImage = ({ handleClose }) => {
                                     <div className='flex flex-col items-center gap-[16px]'>
                                         <img src={Upload} alt='upload' className='w-[56px] h-[56px]' />
                                         <div className='flex flex-col'>
-                                            <p className='text-sm font-semibold font-inter text-[#6FCF97]'>
-                                                Click to upload image <span className='text-[#475367]'>or drag and drop</span>
+                                            <p className='text-sm font-semibold font-inter text-center text-[#E78020]'>
+                                                Click the button below to upload image 
+                                                {/* <span className='text-[#475367]'>or drag and drop</span> */}
                                             </p>
                                             <p className='text-xs text-center font-medium text-[#98A2B3]'>SVG, PNG, JPG or GIF (max. 800x300px)</p>
                                         </div>
-                                        <div className='flex gap-1.5 items-center'>
+                                        <div className='flex gap-1.5 invisible items-center'>
                                             <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
                                             <p className='text-xs font-inter font-semibold text-[#98A2B3]'>OR</p>
                                             <div className='bg-[#F0F2F5] w-[100px] h-[1px]'></div> 
                                         </div>
-                                        <label htmlFor="fileInput" className='cursor-pointer px-[22px] flex justify-center items-center h-[39px] rounded-[5px] bg-[#6FCF97] text-[#FFF] text-sm font-inter font-semibold'>
+                                        <label htmlFor="fileInput" className='cursor-pointer px-[22px] flex justify-center items-center h-[39px] rounded-[5px] bg-[#E78020] text-[#FFF] text-sm font-inter font-semibold'>
                                             Browse Files
                                             <input
                                                 type="file"
@@ -134,10 +126,10 @@ const AddImage = ({ handleClose }) => {
 
 
                     <div className='flex flex-col gap-4 mx-8'>
-                        <p className='text-[#1E1E1E] text-lg font-bold'>Image Details</p>
+                        <p className='text-[#1E1E1E] text-lg font-bold'>Image Caption</p>
 
                             <div className='flex flex-col  '>
-                              <label htmlFor='title' className=' font-medium text-[#1E1E1E] text-sm' >Title</label>
+                              <label htmlFor='title' className=' font-medium text-[#1E1E1E] text-sm' >Caption</label>
                               <input
                                   name="title"
                                   placeholder=""
@@ -176,14 +168,14 @@ const AddImage = ({ handleClose }) => {
                 
                     <div className='flex justify-between gap-[32px] items-center mx-8'>
                         <button
-                            className='w-[220px] border rounded-lg border-[#6FCF97] bg-[#fff] flex items-center justify-center  h-[49px]'
+                            className='w-[220px] border rounded-lg border-[#E78020] bg-[#fff] flex items-center justify-center  h-[49px]'
                             type='button'
                             onClick={handleClose}
                         >
-                            <p className='font-merri font-bold text-base text-[#6FCF97]'>Cancel</p>
+                            <p className='font-merri font-bold text-base text-[#E78020]'>Cancel</p>
                         </button>
                         <button
-                            className="w-[536px]  flex items-center border-none  rounded-lg justify-center  h-[49px] bg-[#6FCF97] text-base  text-center"
+                            className="w-[536px]  flex items-center border-none  rounded-lg justify-center  h-[49px] bg-[#E78020] text-base  text-center"
                             type="submit"
                         >
                             <p className='text-[#fff] text-base  font-merri text-center  font-medium'>{loading ? <CgSpinner className=" animate-spin text-lg  " /> : 'Upload'}</p>

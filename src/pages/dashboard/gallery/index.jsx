@@ -19,26 +19,29 @@ const Gallery = () => {
   const [loading, setLoading] = useState(false)
   const [openDeleteModal, setOpenDeleteModal] = useState(false)
   const [imageId, setImageId] = useState()
+  const [search, setSearch] = useState("")
 
 
 
-    // const getImages = async () => {
-    //   setLoading(true)
-    //   await api.get(appUrls?.GALLERY_URL)
-    //   .then((res) => {
-    //         console.log(res, "res")
-    //         setLoading(false)
-    //         setGallery(res?.data?.data?.gallery)
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false)
-    //     console.log(err, "err")
-    //   })
-    // }
+    const getImages = async () => {
+      setLoading(true)
+      await api.get(appUrls?.GALLERY_URL)
+      .then((res) => {
+            console.log(res, "apple")
+            setLoading(false)
+            setGallery(res?.data?.data)
+      })
+      .catch((err) => {
+        setLoading(false)
+        console.log(err, "err")
+      })
+    }
   
-    // useEffect(() => {
-    //   getImages()
-    // }, [])
+    useEffect(() => {
+      getImages()
+    }, [])
+
+    const filteredImage = gallery.filter((item) => item.caption.toLowerCase().includes(search.toLowerCase() || ""))
 
   return (
     <div className='flex flex-col mx-[33px] '>
@@ -56,6 +59,8 @@ const Gallery = () => {
                 name='search'
                 placeholder='Search'
                 className='outline-none w-full font-hanken p-3 bg-transparent text-[#8B8B8B] text-[11px]'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
             />
           </div>
           <button 
@@ -71,13 +76,13 @@ const Gallery = () => {
             ?
             <Skeleton variant="rectangular" width={1185} height={1000} style={{ backgroundColor: 'rgba(0,0,0, 0.06)' }}/>
             :
-            <div className={`${gallery?.length > 0 ?  "grid grid-cols-3 gap-[32px]"  : "flex items-center justify-center"} mt-[29px]`} >
+            <div className={`${filteredImage?.length > 0 ?  "grid grid-cols-3 gap-[32px]"  : "flex items-center justify-center"} mt-[29px]`} >
               {
-                gallery?.length > 0 ? gallery?.map((item, index) => (
-                      <div key={index} className='bg-[#fff] shadow relative'>
-                        <img src={item?.path} alt='item-images'  className='rounded-tr-lg rounded-tl-lg'/>
+                filteredImage?.length > 0 ? filteredImage?.map((item, index) => (
+                      <div key={index} className='bg-[#fff] shadow h-[400px] relative'>
+                        <img src={item?.image} alt='item-images'  className='rounded-tr-lg rounded-tl-lg'/>
                         <div className='rounded-br-lg rounded-bl-xl flex flex-col p-2'>
-                          <p className='font-poppins text-[#455A64] text-sm font-light'><span className='font-medium'>Title:</span> {item?.title || "Outdoor Area"} </p>
+                          <p className='font-poppins text-[#455A64] text-sm font-light'><span className='font-medium'>Caption:</span> {item?.caption} </p>
           
                         </div>
                         <button className="w-[26px] h-[26px] absolute top-1 right-1 bg-[#fff] flex  rounded-full justify-center items-center p-2" onClick={() => {setOpenDeleteModal(true); setImageId(item)}}>
@@ -86,7 +91,7 @@ const Gallery = () => {
                       </div>
                   ))
                   :
-                  <p className='text-2xl text-[#000] text-center font-semibold'>No Media Available</p>
+                  <p className='text-2xl text-[#000] text-center font-semibold'>No Gallery Available</p>
               }
             </div>
         }
