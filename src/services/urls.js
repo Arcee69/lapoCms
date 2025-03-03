@@ -16,6 +16,9 @@ export const appUrls = {
     //IMAGE ENDPOINT
     GALLERY_URL: "/v1/gallery",
 
+    //AWARDS ENDPOINT
+    AWARD_URL: "/v1/award",
+
     //CREATE SPEECH ENDPOINT
     CREATE_SPEECH_URL: "/api/speech/create/body",
     GET_SPEECH_URL: "/api/speech"

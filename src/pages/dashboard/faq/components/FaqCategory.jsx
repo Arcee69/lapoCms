@@ -4,8 +4,8 @@ import { Formik, Form } from "formik";
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
-import { api } from '../../../services/api';
-import { appUrls } from '../../../services/urls';
+import { api } from '../../../../services/api';
+import { appUrls } from '../../../../services/urls';
 
 import { CgSpinner } from 'react-icons/cg';
 

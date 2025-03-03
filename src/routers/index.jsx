@@ -19,14 +19,15 @@ import UpdateNews from '../pages/dashboard/viewNews/components/UpdateNews';
 import Banner from '../pages/dashboard/banner';
 import Badges from '../pages/dashboard/badges';
 import Careers from '../pages/dashboard/careers';
-import FaqCategory from '../pages/dashboard/faqCategory';
+import FaqCategory from '../pages/dashboard/faq/components/FaqCategory';
 import Faq from '../pages/dashboard/faq';
-import AddFaq from '../pages/dashboard/addFaq';
+import AddFaq from '../pages/dashboard/faq/components/AddFaq';
 import Awards from '../pages/dashboard/awards';
 import Branches from '../pages/dashboard/branches';
 import Reports from '../pages/dashboard/reports';
 import Events from '../pages/dashboard/events';
 import JobListings from '../pages/dashboard/jobListings';
+import AddAwards from '../pages/dashboard/awards/components/AddAwards';
 
 //<ProtectRoutes /> 
 
@@ -49,6 +50,8 @@ export default function Routers () {
               <Route path="/view-blog" element={<ViewBlog />} />
               <Route path="/banner" element={<Banner />} />
               <Route path="/awards" element={<Awards />} />
+              <Route path="/view-awards" element={<Awards />} />
+              <Route path="/add-award" element={<AddAwards />} />
               <Route path="/badges" element={<Badges />} />
               <Route path="/events" element={<Events />} />
               <Route path="/job-listings" element={<JobListings />} />

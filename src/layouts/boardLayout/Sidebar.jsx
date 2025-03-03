@@ -54,9 +54,21 @@ export default function Sidebar() {
     },
     {
       title: "Awards",
-      children: false,
       itemId: "/awards",
       icon: () => <img src={dashboardIcon} alt="icon" />,
+      children: true,
+      subNav: [
+        {
+          title: "View",
+          itemId: "/view-awards",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Add",
+          itemId: "/add-award",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ],
     },
     {
       title: "Job Listings",
