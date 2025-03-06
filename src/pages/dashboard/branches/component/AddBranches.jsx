@@ -51,9 +51,6 @@ const AddBranches = () => {
             "name": values.name,
             "address": values.address,
             "phone_number": `0${values.phone}`
-                // Include longitude and latitude if needed by the API
-            // "longitude": values.longitude,
-            // "latitude": values.latitude,
         }
         try {
             const res = await api.post(appUrls?.CREATE_BRANCH_URL, data)
@@ -201,36 +198,6 @@ const AddBranches = () => {
                                     />
                                     {errors.address && touched.address ? (
                                     <div className='text-RED-_100'>{errors.address}</div>
-                                    ) : null}
-                                </div>
-
-                                <div className="flex flex-col mx-2">
-                                    <label htmlFor='Longitude' className="text-base text-left font-semibold text-[#000000]">Longitude</label>
-                                    <input
-                                        name="longitude"
-                                        placeholder="Longitude"
-                                        type="text" 
-                                        value={values.longitude}
-                                        onChange={handleChange}
-                                        className="rounded outline-none shadow lg:w-[507px] h-auto border-solid  p-3 border"
-                                    />
-                                    {errors.longitude && touched.longitude ? (
-                                    <div className='text-RED-_100'>{errors.longitude}</div>
-                                    ) : null}
-                                </div>
-
-                                <div className="flex flex-col mx-2">
-                                    <label htmlFor='Latitude' className="text-base text-left font-semibold text-[#000000]">Latitude</label>
-                                    <input
-                                        name="latitude"
-                                        placeholder="Latitude"
-                                        type="text" 
-                                        value={values.latitude}
-                                        onChange={handleChange}
-                                        className="rounded outline-none shadow lg:w-[507px] h-auto border-solid  p-3 border"
-                                    />
-                                    {errors.latitude && touched.latitude ? (
-                                    <div className='text-RED-_100'>{errors.latitude}</div>
                                     ) : null}
                                 </div>
 
