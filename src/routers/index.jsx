@@ -28,6 +28,8 @@ import Reports from '../pages/dashboard/reports';
 import Events from '../pages/dashboard/events';
 import JobListings from '../pages/dashboard/jobListings';
 import AddAwards from '../pages/dashboard/awards/components/AddAwards';
+import AddLgas from '../pages/dashboard/branches/component/AddLgas';
+import AddBranches from '../pages/dashboard/branches/component/AddBranches';
 
 //<ProtectRoutes /> 
 
@@ -57,6 +59,8 @@ export default function Routers () {
               <Route path="/job-listings" element={<JobListings />} />
               <Route path="/yearly-reports" element={<Reports />} />
               <Route path="/branches" element={<Branches />} />
+              <Route path="/lgas" element={<AddLgas />} />
+              <Route path="/add-branch" element={<AddBranches />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/add-faq-category" element={<FaqCategory />} />
               <Route path="/add-faq" element={<AddFaq />} />

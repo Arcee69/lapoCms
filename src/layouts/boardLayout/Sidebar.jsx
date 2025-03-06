@@ -78,9 +78,21 @@ export default function Sidebar() {
     },
     {
       title: "Branches",
-      children: false,
       itemId: "/branches",
       icon: () => <img src={dashboardIcon} alt="icon" />,
+      children: true,
+      subNav: [
+        {
+          title: "Lga",
+          itemId: "/lgas",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Branch",
+          itemId: "/add-branch",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ],
     },
     {
       title: "Events",
