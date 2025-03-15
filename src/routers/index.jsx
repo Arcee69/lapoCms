@@ -18,7 +18,6 @@ import ViewNews from '../pages/dashboard/viewNews';
 import UpdateNews from '../pages/dashboard/viewNews/components/UpdateNews';
 import Banner from '../pages/dashboard/banner';
 import Badges from '../pages/dashboard/badges';
-import Careers from '../pages/dashboard/careers';
 import FaqCategory from '../pages/dashboard/faq/components/FaqCategory';
 import Faq from '../pages/dashboard/faq';
 import AddFaq from '../pages/dashboard/faq/components/AddFaq';
@@ -30,8 +29,11 @@ import JobListings from '../pages/dashboard/jobListings';
 import AddAwards from '../pages/dashboard/awards/components/AddAwards';
 import AddLgas from '../pages/dashboard/branches/component/AddLgas';
 import AddBranches from '../pages/dashboard/branches/component/AddBranches';
-
-//<ProtectRoutes /> 
+import AddJobs from '../pages/dashboard/jobListings/components/AddJobs';
+import UpdateJob from '../pages/dashboard/jobListings/components/UpdateJob';
+import Resources from '../pages/dashboard/resources';
+import AddResources from '../pages/dashboard/resources/components/AddResources';
+import UpdateResource from '../pages/dashboard/resources/components/UpdateResource';
 
 
 export default function Routers () {
@@ -57,14 +59,20 @@ export default function Routers () {
               <Route path="/badges" element={<Badges />} />
               <Route path="/events" element={<Events />} />
               <Route path="/job-listings" element={<JobListings />} />
+              <Route path="/view-jobs" element={<JobListings />} />
+              <Route path="/add-job" element={<AddJobs />} />
+              <Route path="/update-job" element={<UpdateJob />} />
               <Route path="/yearly-reports" element={<Reports />} />
               <Route path="/branches" element={<Branches />} />
               <Route path="/lgas" element={<AddLgas />} />
               <Route path="/add-branch" element={<AddBranches />} />
-              <Route path="/careers" element={<Careers />} />
               <Route path="/add-faq-category" element={<FaqCategory />} />
               <Route path="/add-faq" element={<AddFaq />} />
               <Route path="/faq" element={<Faq />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/view-resources" element={<Resources />} />
+              <Route path="/add-resource" element={<AddResources />} />
+              <Route path="/update-resource" element={<UpdateResource />} />
             </Route>
 
             <Route element={<AuthProtectRoutes />}>

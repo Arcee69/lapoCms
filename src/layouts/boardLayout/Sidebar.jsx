@@ -72,9 +72,21 @@ export default function Sidebar() {
     },
     {
       title: "Job Listings",
-      children: false,
       itemId: "/job-listings",
       icon: () => <img src={dashboardIcon} alt="icon" />,
+      children: true,
+      subNav: [
+        {
+          title: "View",
+          itemId: "/view-jobs",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Add",
+          itemId: "/add-job",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ]
     },
     {
       title: "Branches",
@@ -95,23 +107,41 @@ export default function Sidebar() {
       ],
     },
     {
-      title: "Events",
-      children: false,
-      itemId: "/events",
+      title: "Resources",
+      itemId: "/resources",
       icon: () => <img src={dashboardIcon} alt="icon" />,
-    },
-    {
-      title: "Badges",
-      children: false,
-      itemId: "/badges",
-      icon: () => <img src={dashboardIcon} alt="icon" />,
-    },
-    {
-      title: "Yearly Reports",
-      children: false,
-      itemId: "/yearly-reports",
-      icon: () => <img src={dashboardIcon} alt="icon" />,
-    },
+      children: true,
+      subNav: [
+        {
+          title: "View",
+          itemId: "/view-resources",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Add",
+          itemId: "/add-resource",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ],
+    }
+    // {
+    //   title: "Events",
+    //   children: false,
+    //   itemId: "/events",
+    //   icon: () => <img src={dashboardIcon} alt="icon" />,
+    // },
+    // {
+    //   title: "Badges",
+    //   children: false,
+    //   itemId: "/badges",
+    //   icon: () => <img src={dashboardIcon} alt="icon" />,
+    // },
+    // {
+    //   title: "Yearly Reports",
+    //   children: false,
+    //   itemId: "/yearly-reports",
+    //   icon: () => <img src={dashboardIcon} alt="icon" />,
+    // },
   ];
 
   return (

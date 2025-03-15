@@ -26,7 +26,9 @@ const apiResource = () => {
                 config.headers["Content-Type"] = "multipart/form-data";
             } else if (config?.url === appUrls?.GALLERY_URL) {
                 config.headers["Content-Type"] = "multipart/form-data";
-            } else {
+            } else if (config?.url === appUrls?.CREATE_RESOURCES_URL) {
+                config.headers["Content-Type"] = "multipart/form-data";
+            }  else {
                 config.headers["Content-Type"] = 'application/json';
             }
             return config;

@@ -12,7 +12,7 @@ const DeleteImage = ({ handleClose, imageId }) => {
 
     const submitForm = async () => {
         setLoading(true)
-        await api.delete(appUrls?.GALLERY_URL, + `/${Id}`)
+        await api.delete(appUrls?.GALLERY_URL + `/${Id}`)
         .then((res) => {
             setLoading(false)
             toast(`${res?.data?.message}`, { 

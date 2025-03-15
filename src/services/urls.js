@@ -26,6 +26,12 @@ export const appUrls = {
     MASS_CREATE_LGA_URL: "/v1/lga/store/multiple",
     GET_LGA_BY_STATE_URL: "/v1/lga/state",
 
+    //JOBS ENDPOINT
+    CREATE_JOBS_URL: "/v1/job",
+
+    //RESOURCES ENDPOINT
+    CREATE_RESOURCES_URL: "/v1/resource",
+
     //BRANCH ENDPOINT
     CREATE_BRANCH_URL: "/v1/branch",
 

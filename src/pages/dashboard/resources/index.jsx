@@ -4,28 +4,27 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import LongMenu from '../../../components/actionMenuIcon';
 import ModalPop from '../../../components/modal/modalPop';
-import DeleteJob from './components/DeleteJob';
+import DeleteResource from './components/DeleteResource';
 
 
-const JobListings = () => {
-      const [jobs, setJobs] = useState([])
+const Resources = () => {
+      const [resources, setResources] = useState([])
       const [loading, setLoading] = useState(false)
       const [prevPageUrl, setPrevPageUrl] = useState(null);
       const [nextPageUrl, setNextPageUrl] = useState(null);
       const [currentPage, setCurrentPage] = useState(1);
-
    
       const [openDeleteModal, setOpenDeleteModal] = useState(false);
       const [data, setData] = useState();
 
-       const fetchJobs = async (url = "https://lapo.smhptech.com/api/v1/job") => {
+       const fetchResources = async (url = "https://lapo.smhptech.com/api/v1/resource") => {
               setLoading(true)
               try {
                 const res = await axios.get(url);
                 console.log(res, "addict")
                 const data = res.data;
           
-                setJobs(data?.data || []);
+                setResources(data?.data || []);
                 setPrevPageUrl(data.pagination?.prev_page_url);
                 setNextPageUrl(data.pagination?.next_page_url);
                 setCurrentPage(data.pagination?.current_page);
@@ -37,36 +36,35 @@ const JobListings = () => {
             };
           
             useEffect(() => {
-              fetchJobs();
+              fetchResources();
             }, []);
           
             const handlePrevPage = () => {
-              if (prevPageUrl) fetchJobs(prevPageUrl);
+              if (prevPageUrl) fetchResources(prevPageUrl);
             };
           
             const handleNextPage = () => {
-              if (nextPageUrl) fetchJobs(nextPageUrl);
+              if (nextPageUrl) fetchResources(nextPageUrl);
             };
       
 
   return (
    <div className='md:p-8 flex flex-col gap-4'>
-           <p className='text-black text-xl font-semibold'>Jobs</p>
+           <p className='text-black text-xl font-semibold'>Resources</p>
            {
                loading 
                ?
                <p  className='text-2xl text-[#000] text-center font-semibold'>Loading...</p>
                :
-               <div className={`${jobs?.length > 0 ? "grid grid-cols-3 gap-8" :  "flex items-center justify-center"}`}>
+               <div className={`${resources?.length > 0 ? "grid grid-cols-3 gap-8" :  "flex items-center justify-center"}`}>
                    {
-                       jobs?.length > 0 ? jobs?.map((job, index) => (
-                           <div key={index} className="rounded-tl-xl bg-white p-3 rounded-tr-xl xs:w-full md:min-w-[280px]">
+                       resources?.length > 0 ? resources?.map((resource, index) => (
+                           <div key={index} className="rounded-tl-xl bg-white gap-4 p-3 rounded-tr-xl xs:w-full md:min-w-[280px]">
                                <div className='flex flex-col'>
-                                   <p className='font-bold text-sm'>Title: <span className="font-medium text-lg">{job?.title}</span></p>
-                                   <p className='font-bold text-sm'>Role: <span className="font-medium text-lg">{job?.role}</span></p>
-                                   <p className='font-bold text-sm'>State: <span className="font-medium text-lg">{job?.state?.name}</span></p>
-                                   <p className='font-bold text-sm'>Employment Type: <span className="font-medium text-lg capitalize">{job?.employment_type}</span></p>
-                                   <p className='font-bold text-sm'>Work Type: <span className="font-medium text-lg capitalize">{job?.work_type}</span></p>
+                                   <p className='font-bold text-sm'>Title: <span className="font-medium text-lg">{resource?.title}</span></p>
+                                   <p className='font-bold text-sm'>Category: <span className="font-medium capitalize text-lg">{resource?.category}</span></p>
+                                   <p className='font-bold text-sm'>Description: <span className="font-medium text-lg">{resource?.desc}</span></p>
+
                                    <div className='flex items-end justify-end'>
                                        <LongMenu
                                            // action={(action) => handleMenuClick(action, job)} 
@@ -74,13 +72,13 @@ const JobListings = () => {
                                            <div className='flex flex-col gap-3 p-3'>
                                                <p 
                                                className='cursor-pointer hover:bg-[#F8F8F8] p-1' 
-                                               onClick={() => {setOpenDeleteModal(true), setData(job)}}
+                                               onClick={() => {setOpenDeleteModal(true), setData(resource)}}
                                                >
                                                    Delete
                                                </p>
                                                <Link 
-                                                   to="/update-job"
-                                                   state={job}
+                                                   to="/update-resource"
+                                                   state={resource}
                                                    className='cursor-pointer hover:bg-[#F8F8F8] p-1'
                                                >
                                                    Edit
@@ -92,7 +90,7 @@ const JobListings = () => {
                            </div>
                        ))
                        :
-                       <p className='text-2xl text-[#000] text-center font-semibold'>No Jobs Available</p>
+                       <p className='text-2xl text-[#000] text-center font-semibold'>No Resources Available</p>
                    }
    
                </div>
@@ -122,7 +120,7 @@ const JobListings = () => {
           
    
            <ModalPop isOpen={openDeleteModal}>
-               <DeleteJob
+               <DeleteResource
                    handleClose={() => setOpenDeleteModal(false)} 
                    data={data}
                />
@@ -133,4 +131,4 @@ const JobListings = () => {
   )
 }
 
-export default JobListings
+export default Resources
