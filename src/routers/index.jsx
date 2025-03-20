@@ -34,6 +34,8 @@ import UpdateJob from '../pages/dashboard/jobListings/components/UpdateJob';
 import Resources from '../pages/dashboard/resources';
 import AddResources from '../pages/dashboard/resources/components/AddResources';
 import UpdateResource from '../pages/dashboard/resources/components/UpdateResource';
+import UpdateFaq from '../pages/dashboard/faq/components/UpdateFaq';
+import UpdateBranch from '../pages/dashboard/branches/component/UpdateBranch';
 
 
 export default function Routers () {
@@ -64,11 +66,15 @@ export default function Routers () {
               <Route path="/update-job" element={<UpdateJob />} />
               <Route path="/yearly-reports" element={<Reports />} />
               <Route path="/branches" element={<Branches />} />
+              <Route path="/view-branch" element={<Branches />} />
+              <Route path="/update-branch" element={<UpdateBranch />} />
               <Route path="/lgas" element={<AddLgas />} />
               <Route path="/add-branch" element={<AddBranches />} />
+              <Route path="/faq" element={<Faq />} />
               <Route path="/add-faq-category" element={<FaqCategory />} />
               <Route path="/add-faq" element={<AddFaq />} />
-              <Route path="/faq" element={<Faq />} />
+              <Route path="/view-faq" element={<Faq />} />
+              <Route path="/update-faq" element={<UpdateFaq />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/view-resources" element={<Resources />} />
               <Route path="/add-resource" element={<AddResources />} />

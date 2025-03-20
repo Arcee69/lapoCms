@@ -35,6 +35,11 @@ export default function Sidebar() {
       children: true,
       subNav: [
         {
+          title: "View FAQ",
+          itemId: "/view-faq",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
           title: "Create FAQ",
           itemId: "/add-faq",
           icon: () => <img src={dashboardIcon} alt="icon" />,
@@ -97,6 +102,11 @@ export default function Sidebar() {
         {
           title: "Lga",
           itemId: "/lgas",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "View",
+          itemId: "/view-branch",
           icon: () => <img src={dashboardIcon} alt="icon" />,
         },
         {

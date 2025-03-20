@@ -6,8 +6,9 @@ import { appUrls } from '../../../../services/urls';
 import { api } from '../../../../services/api';
 import { toast } from 'react-toastify';
 import { CgSpinner } from 'react-icons/cg';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const AddBranches = () => {
+const UpdateBranch = () => {
     const [loading, setLoading] = useState(false)
     const [statesOptions, setStatesOptions] = useState([]) 
     const [lgaOptions, setLgaOptions] = useState([])
@@ -21,6 +22,9 @@ const AddBranches = () => {
             .required('Phone number is required'),
             // .matches(/^[0-9]{11}$/, 'Phone number must be 11 digits'),
     });
+
+    const { state } = useLocation()
+    const navigate = useNavigate()
 
     const getStates = async () => {
         try {
@@ -44,14 +48,14 @@ const AddBranches = () => {
     const submitForm = async (values, actions) => {
         setLoading(true)
         const data = {
-            "state_id": values.state,
-            "lga_id": values.lg,
-            "name": values.name,
-            "address": values.address,
-            "phone_number": `0${values.phone}`
+            "state_id": values.state || state?.state_id,
+            "lga_id": values.lg || state?.lga_id,
+            "name": values.name || state?.name,
+            "address": values.address || state?.address,
+            "phone_number": `0${values.phone}` || state?.phone_number,
         }
         try {
-            const res = await api.post(appUrls?.CREATE_BRANCH_URL, data)
+            const res = await api.put(appUrls?.CREATE_BRANCH_URL + `/${state?.id}`, data)
             console.log(res, "sick")
             toast(`${res?.data?.message}`, {
                 position: "top-right",
@@ -59,6 +63,7 @@ const AddBranches = () => {
                 closeOnClick: true,
             })
             actions.resetForm()
+            navigate("/view-branch")
         } catch (err) {
             toast(`${err?.data?.message}`, {
                 position: "top-right",
@@ -71,17 +76,14 @@ const AddBranches = () => {
     }
 
 
-
     useEffect(() => {
         getStates()
     }, [])
 
 
-
-
   return (
     <div className='md:p-8 flex flex-col gap-4'>
-        <p className='text-black text-xl font-semibold'>Add Branch</p>
+        <p className='text-black text-xl font-semibold'>Update Branch</p>
     
         <div className="flex items-center ">
             <motion.div
@@ -97,9 +99,9 @@ const AddBranches = () => {
                             initialValues={{
                                 state: "",
                                 lg: "",
-                                name: "",
-                                address: "",
-                                phone: "",
+                                name: state?.name || "",
+                                address: state?.address || "",
+                                phone: state?.phone_number ||"",
                             }}
                             validationSchema={formValidationSchema}
                             enableReinitialize={true}
@@ -238,4 +240,4 @@ const AddBranches = () => {
   )
 }
 
-export default AddBranches
+export default UpdateBranch
