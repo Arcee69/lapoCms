@@ -53,8 +53,6 @@ const Login = () => {
     
     };
     
-    
-
 
   return (
     <div className='mb-5 bg-[#FAFAFA] h-screen flex flex-col '>
@@ -114,14 +112,19 @@ const Login = () => {
                                 className="border  rounded-lg border-[#D0D5DD] mt-1.5"
                                 onChange={handleChange}
                             />
-                        {/* <p className="text-primary text-left text-xs mt-1.5 font-medium cursor-pointer">Forgot Password?</p> */}
+                        <p 
+                            className="text-[#E78020] text-left text-xs mt-1.5 font-medium cursor-pointer"
+                            onClick={() => navigate("/forgot-password")}
+                        >
+                            Forgot Password?
+                        </p>
                         {errors.password && touched.password ? (
                             <div className='text-RED-_100'>{errors.password}</div>
                             ) : null}
                         </div>
 
                         <button 
-                            className= " bg-[#E78020] border-none mt-5  w-[450px] text-[#fff] rounded-lg p-3 cursor-pointer w-full h-[54px] flex justify-center"
+                            className= " bg-[#E78020] border-none mt-5  text-[#fff] rounded-lg p-3 cursor-pointer w-full h-[54px] flex justify-center"
                             type="submit"
                         >
                             <p className='text-[#fff] text-sm  text-center  font-medium'>{loading ? <CgSpinner className=" animate-spin text-lg  " /> : 'Login'}</p>

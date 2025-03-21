@@ -76,6 +76,24 @@ export default function Sidebar() {
       ],
     },
     {
+      title: "Admins",
+      itemId: "/admins",
+      icon: () => <img src={dashboardIcon} alt="icon" />,
+      children: true,
+      subNav: [
+        {
+          title: "View",
+          itemId: "/view-admins",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Add",
+          itemId: "/add-admin",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ],
+    },
+    {
       title: "Job Listings",
       itemId: "/job-listings",
       icon: () => <img src={dashboardIcon} alt="icon" />,

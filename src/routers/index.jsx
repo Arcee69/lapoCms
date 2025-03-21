@@ -5,12 +5,14 @@ import { AuthProtectRoutes, ProtectRoutes } from './protectRoutes';
 
 import Login from '../pages/auth/login';
 import ForgotPassword from '../pages/auth/forgotPassword';
+import VerifyOtp from '../pages/auth/verifyOtp';
+import PasswordReset from '../pages/auth/passwordReset';
 
 import BoardLayout from '../layouts/boardLayout';
 import CreateBlog from '../pages/dashboard/createBlog';
 import ViewBlog from '../pages/dashboard/viewBlog';
 import UpdateBlog from '../pages/dashboard/viewBlog/components/UpdateBlog';
-import PasswordReset from '../pages/auth/forgotPassword/PasswordReset';
+
 import Gallery from '../pages/dashboard/gallery';
 import Newsletter from '../pages/dashboard/newsletter';
 import CreateNews from '../pages/dashboard/createNews';
@@ -36,6 +38,10 @@ import AddResources from '../pages/dashboard/resources/components/AddResources';
 import UpdateResource from '../pages/dashboard/resources/components/UpdateResource';
 import UpdateFaq from '../pages/dashboard/faq/components/UpdateFaq';
 import UpdateBranch from '../pages/dashboard/branches/component/UpdateBranch';
+import Admins from '../pages/dashboard/admins';
+import AddAdmin from '../pages/dashboard/admins/components/AddAdmin';
+
+
 
 
 export default function Routers () {
@@ -79,12 +85,17 @@ export default function Routers () {
               <Route path="/view-resources" element={<Resources />} />
               <Route path="/add-resource" element={<AddResources />} />
               <Route path="/update-resource" element={<UpdateResource />} />
+              <Route path="/admins" element={<Admins />} />
+              <Route path="/view-admins" element={<Admins />} />
+              <Route path="/add-admin" element={<AddAdmin />} />
             </Route>
 
             <Route element={<AuthProtectRoutes />}>
                 <Route path='/' element={<Login />} />
-                <Route path='/reset-password' element={<PasswordReset />} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
+                <Route path='/verify-otp' element={<VerifyOtp />} />
+                <Route path='/reset-password' element={<PasswordReset />} />
+             
             </Route>
         </Routes>
     </div>

@@ -1,7 +1,8 @@
 export const appUrls = {
     //AUTH ENDPOINTS
     LOGIN_URL: "/v1/auth/signin",
-    FORGETPASSWORD_URL: "/v1/auth/forgot-password",
+    FORGET_PASSWORD_URL: "/v1/auth/forgot-password",
+    VERIFY_OTP_URL: "/v1/auth/verify-reset-otp",
     RESET_PASSWORD_URL: "/v1/auth/reset-password",
 
     //BLOG CRUD ENDPOINT
@@ -28,6 +29,9 @@ export const appUrls = {
 
     //JOBS ENDPOINT
     CREATE_JOBS_URL: "/v1/job",
+
+    //USER MANAGEMENT ENDPOINT
+    CREATE_USER_URL: "/v1/user",
 
     //RESOURCES ENDPOINT
     CREATE_RESOURCES_URL: "/v1/resource",

@@ -12,32 +12,33 @@ import { api } from '../../../services/api'
 import { appUrls } from '../../../services/urls'
 
 
-const ForgotPassword = () => {
+const VerifyOtp = () => {
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
 
     const formValidationSchema = Yup.object().shape({
-      email: Yup.string().email().required('Email is required'),
+        otp: Yup.string().required('Otp is required'),
     });
-
+    
     const submitForm = async (values) => {
         // Perform forgot password logic
         setLoading(true)
         const data = {
-          email: values?.email
+          otp: values?.otp
         };
     
-        await api.post(appUrls?.FORGET_PASSWORD_URL, data) 
+        await api.post(appUrls?.VERIFY_OTP_URL, data) 
         .then((response) => {
           console.log(response, "data")
+          localStorage.setItem("userId", response?.data?.data?.user_id)
           toast(response?.data?.message, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
           })
           setLoading(false)
-          navigate("/verify-otp")
+          navigate("/reset-password")
         })
         .catch((error) => {
           console.log(error, "obi")
@@ -65,20 +66,19 @@ const ForgotPassword = () => {
           </div>
             <div className='flex flex-col justify-center gap-1 items-center'>
                 <p className="text-xl font-medium text-[#101828]">CMS Portal</p>
-                <p className='text-[#828282] text-sm'>Forgot Password</p>
+                <p className='text-[#828282] text-sm'>Verify Otp</p>
             </div>
             <div className="h-[300px] mt-5">
                 <Formik
-                initialValues={{
-                    email: "",
-                
-                }}
-                  validationSchema={formValidationSchema}
-                onSubmit={(values) => {
-                    window.scrollTo(0, 0)
-                    console.log(values, "often")
-                    submitForm(values)
-                }}
+                    initialValues={{
+                        otp: "",
+                    }}
+                    validationSchema={formValidationSchema}
+                    onSubmit={(values) => {
+                        window.scrollTo(0, 0)
+                        console.log(values, "often")
+                        submitForm(values)
+                    }}
                 >
                 {({
                     handleSubmit,
@@ -95,17 +95,17 @@ const ForgotPassword = () => {
                     <div className='flex flex-col gap-6 lg:items-center h-[47px]'>
             
                         <div className="flex flex-col ">
-                        <label htmlFor='email' className="text-xs font-normal text-[#101828]">Email</label>
+                        <label htmlFor='otp' className="text-xs font-normal text-[#101828]">Otp</label>
                             <input
-                                name="email"
+                                name="otp"
                                 placeholder="youremail@domain.com"
                                 type="text" 
-                                value={values.email}
+                                value={values.otp}
                                 onChange={handleChange}
                                 className="rounded-lg border-[#D0D5DD] outline-none w-[430px] mt-1.5  border-solid  p-3 border"
                             />
-                            {errors.email && touched.email ? (
-                            <div className='text-RED-_100'>{errors.email}</div>
+                            {errors.otp && touched.otp ? (
+                            <div className='text-RED-_100'>{errors.otp}</div>
                             ) : null}
                         </div>
                 
@@ -133,4 +133,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default VerifyOtp

@@ -46,9 +46,9 @@ const Branches = () => {
     }, [branches?.length, branchesPerPage]);
 
    // Calculate indices for paginated data
-   const indexOfLastTransaction = currentPage * branchesPerPage;
-   const indexOfFirstTransaction = indexOfLastTransaction - branchesPerPage;
-   const currentBranches = branches?.slice(indexOfFirstTransaction, indexOfLastTransaction);
+   const indexOfLastBranch = currentPage * branchesPerPage;
+   const indexOfFirstBranch = indexOfLastBranch - branchesPerPage;
+   const currentBranches = branches?.slice(indexOfFirstBranch, indexOfLastBranch);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
