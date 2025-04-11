@@ -15,9 +15,11 @@ const Awards = () => {
     const [nextPageUrl, setNextPageUrl] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [data, setData] = useState();    
+    const [data, setData] = useState(); 
+    
+    let URL = import.meta.env.VITE_APP_API_URL; 
 
-    const fetchAward = async (url = "https://lapo.smhptech.com/api/v1/award") => {
+    const fetchAward = async (url = `${URL}/v1/award`) => {
         setLoading(true)
         try {
           const res = await axios.get(url);

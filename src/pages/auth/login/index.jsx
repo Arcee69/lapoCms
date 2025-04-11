@@ -112,15 +112,15 @@ const Login = () => {
                                 className="border  rounded-lg border-[#D0D5DD] mt-1.5"
                                 onChange={handleChange}
                             />
-                        <p 
-                            className="text-[#E78020] text-left text-xs mt-1.5 font-medium cursor-pointer"
-                            onClick={() => navigate("/forgot-password")}
-                        >
-                            Forgot Password?
-                        </p>
-                        {errors.password && touched.password ? (
-                            <div className='text-RED-_100'>{errors.password}</div>
-                            ) : null}
+                            <p 
+                                className="text-[#E78020] text-left text-xs mt-1.5 font-medium cursor-pointer"
+                                onClick={() => navigate("/forgot-password")}
+                            >
+                                Forgot Password?
+                            </p>
+                            {errors.password && touched.password ? (
+                                <div className='text-RED-_100'>{errors.password}</div>
+                                ) : null}
                         </div>
 
                         <button 

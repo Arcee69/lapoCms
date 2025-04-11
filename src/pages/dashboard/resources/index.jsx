@@ -17,7 +17,9 @@ const Resources = () => {
       const [openDeleteModal, setOpenDeleteModal] = useState(false);
       const [data, setData] = useState();
 
-       const fetchResources = async (url = "https://lapo.smhptech.com/api/v1/resource") => {
+      let URL = import.meta.env.VITE_APP_API_URL;
+
+       const fetchResources = async (url = `${URL}/v1/resource`) => {
               setLoading(true)
               try {
                 const res = await axios.get(url);

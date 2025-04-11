@@ -28,6 +28,8 @@ const UpdateResource = () => {
 
     const token = localStorage.getItem("token")
 
+    let URL = import.meta.env.VITE_APP_API_URL;
+
 
     const fileInputRef = useRef(null)
     const handleFileChange = async (event) => {
@@ -51,7 +53,7 @@ const UpdateResource = () => {
         formData.append("desc", values?.description);
         formData.append("file", fileData || state.file);
 
-        await axios.post(`https://lapo.smhptech.com/api/v1/resource/${state?.id}`, formData, {
+        await axios.post(`${URL}/v1/resource/${state?.id}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${token}`

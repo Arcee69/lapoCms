@@ -19,7 +19,9 @@ const Branches = () => {
       const [openDeleteModal, setOpenDeleteModal] = useState(false);
       const [data, setData] = useState();
 
-       const fetchBranches = async (url = "https://lapo.smhptech.com/api/v1/branch") => {
+      let URL = import.meta.env.VITE_APP_API_URL;
+
+       const fetchBranches = async (url = `${URL}/v1/branch`) => {
               setLoading(true)
               try {
                 const res = await axios.get(url);

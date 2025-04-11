@@ -24,8 +24,9 @@ const ViewBlog = () => {
 
     const navigate = useNavigate()
     
+    let URL = import.meta.env.VITE_APP_API_URL;
 
-    const fetchBlogPosts = async (url = "https://lapo.smhptech.com/api/v1/post") => {
+    const fetchBlogPosts = async (url = `${URL}/v1/post`) => {
         setLoading(true)
         try {
           const res = await axios.get(url);

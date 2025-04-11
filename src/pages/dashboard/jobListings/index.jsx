@@ -18,7 +18,9 @@ const JobListings = () => {
       const [openDeleteModal, setOpenDeleteModal] = useState(false);
       const [data, setData] = useState();
 
-       const fetchJobs = async (url = "https://lapo.smhptech.com/api/v1/job") => {
+      let URL = import.meta.env.VITE_APP_API_URL;
+
+       const fetchJobs = async (url = `${URL}/v1/job`) => {
               setLoading(true)
               try {
                 const res = await axios.get(url);

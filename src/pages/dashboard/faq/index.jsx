@@ -16,7 +16,9 @@ const Faq = () => {
       const [openDeleteModal, setOpenDeleteModal] = useState(false);
       const [data, setData] = useState();
 
-       const fetchFaqs = async (url = "https://lapo.smhptech.com/api/v1/faq") => {
+      let URL = import.meta.env.VITE_APP_API_URL;
+
+       const fetchFaqs = async (url = `${URL}/v1/faq`) => {
               setLoading(true)
               try {
                 const res = await axios.get(url);
