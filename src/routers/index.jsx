@@ -91,7 +91,8 @@ export default function Routers () {
             </Route>
 
             <Route element={<AuthProtectRoutes />}>
-                <Route path='/' element={<Login />} />
+                {/* <Route path='/' element={<Login />} /> */}
+                <Route path='/cms' element={<Login />} />
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path='/verify-otp' element={<VerifyOtp />} />
                 <Route path='/reset-password' element={<PasswordReset />} />

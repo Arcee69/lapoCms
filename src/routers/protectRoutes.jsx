@@ -12,7 +12,8 @@ export const ProtectRoutes = () => {
         <Outlet />
       </BoardLayout>
     ) : (
-      <Navigate to="/" state={{ from: location }} replace />
+      // <Navigate to="/" state={{ from: location }} replace />
+      <Navigate to="/cms" state={{ from: location }} replace />
     );
   };
 

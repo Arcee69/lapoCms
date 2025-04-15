@@ -68,7 +68,8 @@ export default function Header({ setOpenMobileSidebar }) {
             onClick={() => {
               localStorage.removeItem("userObj")
               localStorage.removeItem("token")
-              navigate("/")
+              // navigate("/")
+              navigate("/cms")
             }}
           >
             Logout
