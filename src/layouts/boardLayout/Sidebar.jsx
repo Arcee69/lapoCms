@@ -52,10 +52,22 @@ export default function Sidebar() {
       ],
     },
     {
-      title: "Gallery",
-      children: false,
-      itemId: "/gallery",
+      title: "Media",
+      itemId: "/media",
       icon: () => <img src={dashboardIcon} alt="icon" />,
+      children: true,
+      subNav: [
+        {
+          title: "Gallery",
+          itemId: "/gallery",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+        {
+          title: "Video",
+          itemId: "/video",
+          icon: () => <img src={dashboardIcon} alt="icon" />,
+        },
+      ],
     },
     {
       title: "Awards",
@@ -151,13 +163,13 @@ export default function Sidebar() {
           icon: () => <img src={dashboardIcon} alt="icon" />,
         },
       ],
-    }
-    // {
-    //   title: "Events",
-    //   children: false,
-    //   itemId: "/events",
-    //   icon: () => <img src={dashboardIcon} alt="icon" />,
-    // },
+    },
+    {
+      title: "Pop",
+      children: false,
+      itemId: "/pop",
+      icon: () => <img src={dashboardIcon} alt="icon" />,
+    },
     // {
     //   title: "Badges",
     //   children: false,

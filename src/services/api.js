@@ -26,6 +26,10 @@ const apiResource = () => {
                 config.headers["Content-Type"] = "multipart/form-data";
             } else if (config?.url === appUrls?.GALLERY_URL) {
                 config.headers["Content-Type"] = "multipart/form-data";
+            } else if (config?.url === appUrls?.VID_URL) {
+                config.headers["Content-Type"] = "multipart/form-data";
+            } else if (config?.url === appUrls?.POP_URL) {
+                config.headers["Content-Type"] = "multipart/form-data";
             } else if (config?.url === appUrls?.CREATE_RESOURCES_URL) {
                 config.headers["Content-Type"] = "multipart/form-data";
             }  else {

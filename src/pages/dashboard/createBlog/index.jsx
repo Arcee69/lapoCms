@@ -17,6 +17,8 @@ import { CgSpinner } from 'react-icons/cg';
 const CreateBlog = () => {
     const [loading, setLoading] = useState(false)
 
+    const categoryOptions = ["press","article"]
+
     const formValidationSchema = Yup.object().shape({
         title: Yup.string().required("Blog Title is Required"),
         imageDoc: Yup.mixed().required('Blog Image is required'),
@@ -29,6 +31,7 @@ const CreateBlog = () => {
         formData.append("title", values?.title);
         formData.append("status", "publish");
         formData.append("body", values?.description);
+        formData.append("category", values?.category);
         formData.append("image", values?.imageDoc);
 
         await api.post(appUrls?.CREATE_POST_URL, formData)
@@ -71,6 +74,7 @@ const CreateBlog = () => {
                         initialValues={{
                             title: "",
                             post: "",
+                            category: "",
                             imageDoc: "",
                         }}
                         validationSchema={formValidationSchema}
@@ -143,7 +147,27 @@ const CreateBlog = () => {
                                         }
                                 </div> 
 
-
+                                <div className="flex flex-col mx-2">
+                                    <label htmlFor='Category' className="text-base text-left font-semibold text-[#000000]">Category</label>
+                                    <select
+                                        name='category'
+                                        value={values.category} 
+                                        onChange={(e) => {
+                                            handleChange(e); // Update Formik state
+                                        }}
+                                        className="rounded outline-none shadow lg:w-[507px] h-auto border-solid  p-3 border"
+                                    >
+                                        <option value="">Select Category</option>
+                                        {
+                                            categoryOptions.map((item, index) => (
+                                                <option key={index} value={item}>{item}</option>
+                                            ))
+                                        }
+                                    </select>
+                                    {errors.category && touched.category ? (
+                                    <div className='text-RED-_100'>{errors.category}</div>
+                                    ) : null}
+                                </div>
                                 
                                 <div className='flex flex-col px-1'>
                                     <label htmlFor='title' className="text-base text-left font-semibold text-[#000000]">Body</label>

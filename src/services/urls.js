@@ -14,8 +14,12 @@ export const appUrls = {
     FAQ_URL: "/v1/faq",
     FAQ_CATEGORY_URL: "/v1/category",
 
-    //IMAGE ENDPOINT
+    //MEDIA ENDPOINT
     GALLERY_URL: "/v1/gallery",
+    VID_URL: "/v1/video",
+
+    //POP ENDPOINT
+    POP_URL: "/v1/pop",
 
     //AWARDS ENDPOINT
     AWARD_URL: "/v1/award",

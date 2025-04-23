@@ -14,6 +14,8 @@ import ViewBlog from '../pages/dashboard/viewBlog';
 import UpdateBlog from '../pages/dashboard/viewBlog/components/UpdateBlog';
 
 import Gallery from '../pages/dashboard/gallery';
+import Vid from '../pages/dashboard/vid';
+import Pop from '../pages/dashboard/pop';
 import Newsletter from '../pages/dashboard/newsletter';
 import CreateNews from '../pages/dashboard/createNews';
 import ViewNews from '../pages/dashboard/viewNews';
@@ -54,7 +56,10 @@ export default function Routers () {
               <Route path="/create-news" element={<CreateNews />} />
               <Route path="/view-news" element={<ViewNews />} />
               <Route path="/update-news" element={<UpdateNews />} />
+              <Route path="/media" element={<Gallery />} />
               <Route path="/gallery" element={<Gallery />} />
+              <Route path="/video" element={<Vid />} />
+              <Route path="/pop" element={<Pop />} />
               <Route path="/newsletter" element={<Newsletter />} />
               <Route path="/create-blog" element={<CreateBlog />} />
               <Route path="/update-blog" element={<UpdateBlog />} />
