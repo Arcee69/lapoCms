@@ -26,9 +26,9 @@ const Faq = () => {
                 const data = res.data;
           
                 setFaqs(data?.data || []);
-                setPrevPageUrl(data.pagination?.prev_page_url);
-                setNextPageUrl(data.pagination?.next_page_url);
-                setCurrentPage(data.pagination?.current_page);
+                setPrevPageUrl(data?.pagination?.prev_page_url);
+                setNextPageUrl(data?.pagination?.next_page_url);
+                setCurrentPage(data?.pagination?.current_page);
               } catch (err) {
                 console.error(err);
               } finally {

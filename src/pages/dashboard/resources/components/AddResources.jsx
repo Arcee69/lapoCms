@@ -47,6 +47,7 @@ const AddResources = () => {
 
         await api.post(appUrls?.CREATE_RESOURCES_URL, formData)
         .then((res)=> {
+            console.log(res, "misa")
             toast("Resources Created Successfully", {
                 position: "top-right",
                 autoClose: 5000,

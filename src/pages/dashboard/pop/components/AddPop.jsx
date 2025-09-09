@@ -28,6 +28,7 @@ const AddPop = ({ handleClose }) => {
         
         let formData = new FormData();
         formData.append("title", values?.title);
+        formData.append("link", values?.link);
         formData.append("media", pic);
 
         try {
@@ -59,7 +60,7 @@ const AddPop = ({ handleClose }) => {
         <Formik
             initialValues={{
                 title: "",
-                
+                link: ""
             }}
                 // validationSchema={formValidationSchema}
                 onSubmit={(values, action) => {
@@ -139,6 +140,22 @@ const AddPop = ({ handleClose }) => {
                               {errors.title && touched.title ? (
                               <div className="text-RED-_100 text-xs">
                                   {errors.title}
+                              </div>
+                              ) : null}
+                        </div>
+                        <div className='flex flex-col  '>
+                              <label htmlFor='link' className=' font-medium text-[#1E1E1E] text-sm'>Link</label>
+                              <input
+                                  name="link"
+                                  placeholder=""
+                                  type="text" 
+                                  value={values?.link}
+                                  onChange={handleChange}
+                                  className="outline-none w-full p-2 bg-[#FFF] border  border-[#D0D5DD] h-[48px] rounded-lg border-solid "
+                              />
+                              {errors.link && touched.link ? (
+                              <div className="text-RED-_100 text-xs">
+                                  {errors.link}
                               </div>
                               ) : null}
                         </div>
